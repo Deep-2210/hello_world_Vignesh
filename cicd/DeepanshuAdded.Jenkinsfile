@@ -12,6 +12,7 @@ pipeline {
   stages {
     stage ('Build') {
       steps {
+        sh 'printenv'
         sh 'mvn clean package'
       }
     }
