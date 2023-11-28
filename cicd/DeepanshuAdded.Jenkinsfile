@@ -14,8 +14,8 @@ pipeline {
       steps {
         //sh 'printenv'
         script{
-        ${WORKSPACE}
-        ${workspace}
+        '${WORKSPACE}'
+        '${workspace}'
         sh 'mvn clean package'
         }
       }
