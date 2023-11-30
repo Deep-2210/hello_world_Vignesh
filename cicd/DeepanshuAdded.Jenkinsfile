@@ -12,8 +12,9 @@ pipeline {
   stages {
     stage ('Build') {
       steps {
-        //sh 'printenv'
+        echo "${env.WORKSPACE}"
         script{
+        echo "${env.WORKSPACE}"
         '${WORKSPACE}'
         '${workspace}'
         sh 'mvn clean package'
