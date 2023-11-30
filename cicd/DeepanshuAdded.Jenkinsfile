@@ -14,8 +14,8 @@ pipeline {
       steps {
         //sh 'printenv'
         script{
-        sh 'Capital WorkSpace directory part is: ${WORKSPACE}'
-        sh 'Small workspace directory part is: ${workspace}'
+        '${WORKSPACE}'
+        '${workspace}'
         sh 'mvn clean package'
         }
       }
