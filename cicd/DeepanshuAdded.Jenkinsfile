@@ -15,8 +15,6 @@ pipeline {
         echo "${env.WORKSPACE}"
         script{
         echo "${env.WORKSPACE}"
-        '${WORKSPACE}'
-        '${workspace}'
         sh 'mvn clean package'
         }
       }
