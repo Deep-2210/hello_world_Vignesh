@@ -24,7 +24,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("Deep-2210/hello_world_Vignesh:${TAG}")
+                    docker.build("Deep-2210/hello_world_Vignesh/tree/main:${TAG}")
                 }
             }
         }
@@ -32,8 +32,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
-                        docker.image("Deep-2210/hello_world_Vignesh:${TAG}").push()
-                        docker.image("Deep-2210/hello_world_Vignesh:${TAG}").push("latest")
+                        docker.image("Deep-2210/hello_world_Vignesh/tree/main:${TAG}").push()
+                        docker.image("Deep-2210/hello_world_Vignesh/tree/main:${TAG}").push("latest")
                     }
                 }
             }
