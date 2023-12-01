@@ -19,14 +19,14 @@ pipeline {
         sh 'mvn clean package'
       }
     }
-    stage('Docker Build') {
+    stage ('Docker Build') {
       steps {
         script {
           docker.build("vigneshsweekaran/hello-world:${TAG}")
         }
       }
     }
-    stage('Pushing Docker Image to Dockerhub') {
+    stage ('Pushing Docker Image to Dockerhub') {
       steps {
         script {
           docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
@@ -36,7 +36,7 @@ pipeline {
         }
       }
     }
-    stage('Deploy'){
+    stage ('Deploy'){
       steps {
         sh "docker stop hello-world | true"
         sh "docker rm hello-world | true"
