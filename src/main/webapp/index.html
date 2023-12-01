@@ -1,12 +1,44 @@
+<!DOCTYPE html>
 <html>
-   <body style="background-color='red';">
-      <form style="margin: auto; width: 220px;" action="index.jsp" method="GET">
-         <p>My first Java Pipeline Deployed.</p>
-         Number 1: <input type="number" name="number1"/>
-         <br/>
-         Number 2: <input type="number" name="number2"/>
-         <br/>
-         <input type="submit" value="Submit"/>
-      </form>
-   </body>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        form {
+            margin: auto;
+            width: 220px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="number"], input[type="submit"] {
+            margin-top: 8px;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form action="index.jsp" method="GET">
+        <p>My first Java Pipeline Deployed.</p>
+        Number 1: <input type="number" name="number1"/><br/>
+        Number 2: <input type="number" name="number2"/><br/>
+        <input type="submit" value="Submit"/>
+    </form>
+</body>
 </html>
