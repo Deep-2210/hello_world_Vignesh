@@ -9,6 +9,10 @@ pipeline {
   tools {
     maven 'maven-3.6.3' 
   }
+  environment {
+    DATE = new Date().format('yy.M')
+    TAG = "${DATE}.${BUILD_NUMBER}"
+  }
   stages {
     stage ('Build') {
       steps {
@@ -18,12 +22,32 @@ pipeline {
         sh 'mvn clean package'
         }
       }
+
+      stage('Docker Build') {
+        steps{
+          script{
+            docker.build("vigneshsweekaran/hello-world:${TAG}")
+          }
+        }
+      }
+
+      stage('Pushing Docker Image to Dockerhub') {
+        steps{
+          script {
+            docker.withRegistry('https://registry.hub.docker.com', 'docker_Credential') {
+              docker.image("vigneshsweekaran/hello-world:${TAG}").push()
+              docker.image("vigneshsweekaran/hello-world:${TAG}").push("latest")
+            }
+          }
+        }
+      }
     }
     stage ('Deploy') {
       steps {
-        script {
-          deploy adapters: [tomcat9(credentialsId: 'tomcat_credential', path: '', url: 'http://10.101.104.21:8080')], contextPath: '/pipeline', onFailure: false, war: 'target/*.war' 
-        }
+        
+        sh "docker stop hello-world | true"
+        sh "docker rm hello-world | true"
+        sh "docker run --name hello-world -d -p 9004:8080 vigneshsweekaran/hello-world:${TAG}"
       }
     }
   }
@@ -33,3 +57,4 @@ pipeline {
     }
   }
 }
+
