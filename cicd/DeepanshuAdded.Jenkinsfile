@@ -24,7 +24,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("Deep-2210/hello_world_Vignesh:${TAG}")
+                    docker.build("Deep-2210/helloworldvignesh:${TAG}")
                 }
             }
         }
@@ -32,8 +32,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
-                        docker.image("Deep-2210/hello_world_Vignesh:${TAG}").push()
-                        docker.image("Deep-2210/hello_world_Vignesh:${TAG}").push("latest")
+                        docker.image("Deep-2210/helloworldvignesh:${TAG}").push()
+                        docker.image("Deep-2210/helloworldvignesh:${TAG}").push("latest")
                     }
                 }
             }
@@ -42,7 +42,7 @@ pipeline {
             steps {
                 sh "docker stop hello-world | true"
                 sh "docker rm hello-world | true"
-                sh "docker run --name hello-world -d -p 9004:8080 Deep-2210/hello_world_Vignesh:${TAG}"
+                sh "docker run --name hello-world -d -p 9004:8080 Deep-2210/helloworldvignesh:${TAG}"
             }
         }
     }
