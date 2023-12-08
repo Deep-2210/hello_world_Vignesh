@@ -24,7 +24,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("Deep-2210/hello_world_Vignesh:${TAG}")
+                    docker.build("Deep-2210/hello_world_vignesh:${TAG}")
                 }
             }
         }
