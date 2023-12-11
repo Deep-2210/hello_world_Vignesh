@@ -32,8 +32,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
-                        docker.image("deepanshusharma007/helloworldvignesh:${TAG}").push()
-                        docker.image("deepanshusharma007/helloworldvignesh:${TAG}").push("latest")
+                        docker.image("deepli/helloworldvignesh:${TAG}").push()
+                        docker.image("deepli/helloworldvignesh:${TAG}").push("latest")
                     }
                 }
             }
